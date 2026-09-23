@@ -1,0 +1,32 @@
+# Toda la configuración sensible o que cambia por entorno viene de variables de entorno.
+# Los valores por defecto sirven para desarrollo local con docker compose.
+spring:
+  application:
+    name: nutriplan-backend
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/nutriplan}
+    username: ${DB_USER:nutriplan}
+    password: ${DB_PASSWORD:nutriplan}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+  jpa:
+    open-in-view: false
+    hibernate:
+      # El esquema lo maneja Flyway; Hibernate solo valida que las entidades coincidan.
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+server:
+  port: ${PORT:8080}
+
+app:
+  version: '@project.version@'
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

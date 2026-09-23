@@ -1,0 +1,4 @@
+# Finales de línea consistentes entre Windows y Mac.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
