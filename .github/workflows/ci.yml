@@ -7,7 +7,7 @@ on:
 
 jobs:
   backend:
-    name: Backend (Java 21 + tests con PostgreSQL real)
+    name: build
     runs-on: ubuntu-latest
     defaults:
       run:
