@@ -25,7 +25,7 @@ class StatusIntegrationTest {
     @Test
     void flywayCreaLaTablaDeUsuarios() {
         Integer tablas = jdbcTemplate.queryForObject(
-            "select count(*) from information_schema.tables where table_name = 'app_user'",
+            "select count(*) from information_schema.tables where table_name = 'users'",
             Integer.class);
 
         assertThat(tablas).isEqualTo(1);
