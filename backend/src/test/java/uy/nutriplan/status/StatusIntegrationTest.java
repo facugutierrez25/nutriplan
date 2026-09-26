@@ -8,10 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
-/**
- * Levanta la aplicación completa contra un PostgreSQL real (Testcontainers)
- * y comprueba que las migraciones de Flyway se aplicaron y que el endpoint responde.
- */
 @SpringBootTest
 @ActiveProfiles("test")
 class StatusIntegrationTest {
@@ -23,7 +19,7 @@ class StatusIntegrationTest {
     private StatusController statusController;
 
     @Test
-    void flywayCreaLaTablaDeUsuarios() {
+    void flywayCreatesUsersTable() {
         Integer tablas = jdbcTemplate.queryForObject(
             "select count(*) from information_schema.tables where table_name = 'users'",
             Integer.class);
@@ -32,7 +28,7 @@ class StatusIntegrationTest {
     }
 
     @Test
-    void statusRespondeConLaBaseConectada() {
+    void statusRespondsWithDatabaseConnected() {
         var response = statusController.status();
 
         assertThat(response.app()).isEqualTo("nutriplan-backend");

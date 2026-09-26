@@ -19,13 +19,22 @@ class User {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Rol role;
+    private Role role;
 
     @Column(name = "created_at", nullable = false, updatable = false)
-    private OffsetDateTime creadoEn;
+    private OffsetDateTime createdAt;
 
     @Version
     private Long version;
 
-    enum Rol { PATIENT, NUTRITIONIST, ADMIN }
+    @PrePersist
+    void prePersist() {
+        if (createdAt == null) createdAt = OffsetDateTime.now();
+    }
+
+    enum Role { PATIENT, NUTRITIONIST, ADMIN }
+
+    void setEmail(String email) { this.email = email; }
+    void setPasswordHash(String hash) { this.passwordHash = hash; }
+    void setRole(Role role) { this.role = role; }
 }
