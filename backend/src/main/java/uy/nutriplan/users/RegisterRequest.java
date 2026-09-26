@@ -13,6 +13,6 @@ record RegisterRequest(
     @Pattern(
         regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{10,}$",
         message = "Password must be at least 10 characters and include uppercase, lowercase, number and special character"
-)
-      String password
+    )
+    String password
   ) {}
