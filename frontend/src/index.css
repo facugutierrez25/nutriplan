@@ -1,81 +1,64 @@
 :root {
-  --bg: #f7f7f4;
-  --fg: #1f2421;
-  --muted: #5b635e;
-  --card: #ffffff;
-  --border: #dfe3dc;
-  --accent: #2f7d4f;
-  --error: #b3261e;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  color: var(--fg);
-  background: var(--bg);
+  color-scheme: light;
+  --bg: #F1F4F9; --surface: #FFFFFF; --surface-2: #FBFCFE;
+  --ink: #111C2E; --muted: #566275;
+  --primary: #1D3A6B; --on-primary: #FFFFFF; --selected: #E8EDF5; --accent: #1F7A70;
+  --line: #E2E6EE; --line-soft: #EEF1F5; --border: #D3D9E2; --control: #8A93A3;
+  --g-prot: #C0704A; --g-cer: #B8913A; --g-frut: #B5627A;
+  --g-lac: #4F86B8; --g-gras: #8070B0; --g-verd: #4E8F6A;
+  --t-prot: #F4E7E0; --t-cer: #F4EEDD; --t-frut: #F4E4EA;
+  --t-lac: #E3ECF5; --t-gras: #ECE9F4; --t-verd: #E2EEE6;
+  --radius-card: 8px; --radius-control: 6px; --radius-sm: 4px;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
 }
 
+/* Oscuro: por preferencia del sistema (salvo que el usuario elija claro) o por elección explícita */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #141715;
-    --fg: #e8ebe7;
-    --muted: #a3aba5;
-    --card: #1d211e;
-    --border: #2f3531;
-    --accent: #6cc28f;
-    --error: #f2b8b5;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0E1420; --surface: #172133; --surface-2: #131C2C;
+    --ink: #E6EBF3; --muted: #9AA6B8;
+    --primary: #8DB0E6; --on-primary: #0B1424; --selected: #22324D; --accent: #4DB6A8;
+    --line: #263247; --line-soft: #1F2A3D; --border: #33415A; --control: #76839A;
+    --t-prot: #3A2A24; --t-cer: #38321F; --t-frut: #3A2630;
+    --t-lac: #1F3045; --t-gras: #2C2840; --t-verd: #203329;
   }
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0E1420; --surface: #172133; --surface-2: #131C2C;
+  --ink: #E6EBF3; --muted: #9AA6B8;
+  --primary: #8DB0E6; --on-primary: #0B1424; --selected: #22324D; --accent: #4DB6A8;
+  --line: #263247; --line-soft: #1F2A3D; --border: #33415A; --control: #76839A;
+  --t-prot: #3A2A24; --t-cer: #38321F; --t-frut: #3A2630;
+  --t-lac: #1F3045; --t-gras: #2C2840; --t-verd: #203329;
+}
+
+body { margin: 0; background: var(--bg); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
   background: var(--bg);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 48px 16px;
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
-h1 {
-  margin: 0;
-  color: var(--accent);
-}
-
-.subtitle {
-  color: var(--muted);
-  margin-top: 4px;
-}
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 24px;
-}
-
-.card h2 {
-  margin-top: 0;
-  font-size: 1.1rem;
-}
-
-dl {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 8px 16px;
-  margin: 0;
-}
-
-dt {
-  color: var(--muted);
-}
-
-dd {
-  margin: 0;
-}
-
-.error {
-  color: var(--error);
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
 }
