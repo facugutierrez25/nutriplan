@@ -2,12 +2,30 @@ version: 2
 updates:
     - package-ecosystem: maven
       directory: /backend
+      # Los PRs van a develop, como cualquier otro cambio (después pasan a main con la release)
+      target-branch: develop
       schedule:
         interval: weekly
       open-pull-requests-limit: 5
+      groups:
+        # Las tres partes de jjwt tienen que actualizarse siempre juntas
+        jjwt:
+          patterns:
+            - "io.jsonwebtoken:*"
+        backend-menores:
+          update-types:
+            - minor
+            - patch
 
     - package-ecosystem: npm
       directory: /frontend
+      target-branch: develop
       schedule:
         interval: weekly
       open-pull-requests-limit: 5
+      groups:
+        # Parches y versiones menores en un solo PR por semana; las mayores siguen llegando por separado
+        frontend-menores:
+          update-types:
+            - minor
+            - patch
