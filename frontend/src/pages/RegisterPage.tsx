@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { register } from '../api/users'
+import './RegisterPage.css'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
@@ -24,37 +25,43 @@ export default function RegisterPage() {
   }
 
   return (
-    <main>
-      <h1>Crear cuenta</h1>
-      <form onSubmit={handleSubmit} noValidate>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-          autoComplete="email"
-        />
+    <main className="register-page">
+      <div className="register-card">
+        <h1 className="register-title">Crear cuenta</h1>
+        <form onSubmit={handleSubmit} noValidate>
+          <div className="register-field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+              autoComplete="email"
+            />
+          </div>
 
-        <label htmlFor="password">Contraseña</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-          autoComplete="new-password"
-        />
-        <small>Mínimo 10 caracteres, mayúscula, minúscula, número y carácter especial.</small>
+          <div className="register-field">
+            <label htmlFor="password">Contraseña</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              autoComplete="new-password"
+            />
+          </div>
+          <p className="register-hint">Mínimo 10 caracteres, mayúscula, minúscula, número y carácter especial.</p>
 
-        {error && <p role="alert">{error}</p>}
+          {error && <p role="alert" className="register-error">{error}</p>}
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Registrando…' : 'Crear cuenta'}
-        </button>
-      </form>
-      <p>¿Ya tenés cuenta? <Link to="/login">Iniciá sesión</Link></p>
+          <button type="submit" disabled={loading} className="register-submit">
+            {loading ? 'Registrando…' : 'Crear cuenta'}
+          </button>
+        </form>
+        <p className="register-footer">¿Ya tenés cuenta? <Link to="/login">Iniciá sesión</Link></p>
+      </div>
     </main>
   )
 }
