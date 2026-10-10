@@ -8,31 +8,29 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import uy.nutriplan.users.JwtService;
 
-/**
- * Seguridad base de la v0.
- * <p>
- * Solo el estado y el health check son públicos; todo lo demás exige autenticación.
- * El registro y login de usuarios reales llegan en el siguiente paso del roadmap.
- */
 @Configuration
 class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http, JwtService jwtService) throws Exception {
         http
             .cors(Customizer.withDefaults())
-            // API REST sin estado: sin sesiones de servidor, lista para escalar horizontalmente.
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/status", "/actuator/health").permitAll()
+                .requestMatchers("/api/v1/status", "/actuator/health", "/api/v1/users", "/api/v1/users/login").permitAll()
                 .anyRequest().authenticated())
-            .httpBasic(Customizer.withDefaults());
+            .addFilterBefore(new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class)
+            .httpBasic(http2 -> http2.disable());
         return http.build();
     }
 
@@ -46,5 +44,10 @@ class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/api/**", config);
         return source;
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

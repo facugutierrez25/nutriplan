@@ -1,0 +1,97 @@
+.register-page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.register-card {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.register-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.register-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.register-field label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.register-field input {
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 0 12px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.register-field input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.register-hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+.register-error {
+  font-size: 14px;
+  color: var(--error);
+  background: var(--error-bg);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
+
+.register-submit {
+  width: 100%;
+  height: 44px;
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  border-radius: var(--radius-control);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.register-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.register-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.register-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
