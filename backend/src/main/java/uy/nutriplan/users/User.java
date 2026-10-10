@@ -31,8 +31,9 @@ class User {
     void prePersist() {
         if (createdAt == null) createdAt = OffsetDateTime.now();
     }
-
-    enum Role { PATIENT, NUTRITIONIST, ADMIN }
+    String getEmail() { return email; }
+    String getPasswordHash() { return passwordHash; }
+    Role getRole() { return role; }
 
     void setEmail(String email) { this.email = email; }
     void setPasswordHash(String hash) { this.passwordHash = hash; }

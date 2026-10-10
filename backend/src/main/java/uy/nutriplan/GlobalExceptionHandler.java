@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import uy.nutriplan.users.EmailAlreadyExistsException;
+import uy.nutriplan.users.InvalidCredentialsException;
 
 import java.util.Map;
 
@@ -22,6 +23,12 @@ class GlobalExceptionHandler {
     @ExceptionHandler(EmailAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     Map<String, Object> handleEmailExists(EmailAlreadyExistsException ex) {
+        return Map.of("error", ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    Map<String, Object> handleInvalidCredentials(InvalidCredentialsException ex) {
         return Map.of("error", ex.getMessage());
     }
 }
