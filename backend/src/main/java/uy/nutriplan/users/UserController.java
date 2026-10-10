@@ -19,4 +19,10 @@ class UserController {
     void register(@Valid @RequestBody RegisterRequest request) {
         userService.register(request.email(), request.password());
     }
+
+    @PostMapping("/login")
+    LoginResponse login(@Valid @RequestBody LoginRequest request) {
+        String token = userService.login(request.email(), request.password());
+        return new LoginResponse(token);
+    }
 }
