@@ -1,4 +1,4 @@
-package uy.nutriplan.users;
+package uy.morso.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package uy.nutriplan.status;
+package uy.morso.status;
 
 import java.time.OffsetDateTime;
 
