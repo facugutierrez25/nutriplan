@@ -1,4 +1,4 @@
-package uy.nutriplan.users;
+package uy.morso.users;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ class UserRegistrationIntegrationTest {
         mockMvc.perform(post("/api/v1/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
-                        { "email": "facu@nutriplan.uy", "password": "Segura1234!" }
+                        { "email": "facu@morso.uy", "password": "Segura1234!" }
                         """))
                 .andExpect(status().isCreated());
     }
@@ -43,7 +43,7 @@ class UserRegistrationIntegrationTest {
     @Test
     void registerWithDuplicateEmail_returns409() throws Exception {
         String body = """
-                { "email": "duplicado@nutriplan.uy", "password": "Segura1234!" }
+                { "email": "duplicado@morso.uy", "password": "Segura1234!" }
                 """;
 
         mockMvc.perform(post("/api/v1/users")
@@ -74,7 +74,7 @@ class UserRegistrationIntegrationTest {
         mockMvc.perform(post("/api/v1/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
-                        { "email": "facu2@nutriplan.uy", "password": "debil" }
+                        { "email": "facu2@morso.uy", "password": "debil" }
                         """))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors").isArray());

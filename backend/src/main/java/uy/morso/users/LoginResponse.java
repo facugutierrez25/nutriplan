@@ -1,3 +1,3 @@
-package uy.nutriplan.users;
+package uy.morso.users;
 
 record LoginResponse(String token) {}

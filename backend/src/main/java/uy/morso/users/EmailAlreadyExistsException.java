@@ -1,4 +1,4 @@
-package uy.nutriplan.users;
+package uy.morso.users;
 
 public class EmailAlreadyExistsException extends RuntimeException {
     public EmailAlreadyExistsException(String email) {

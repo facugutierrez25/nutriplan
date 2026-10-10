@@ -1,4 +1,4 @@
-package uy.nutriplan.users;
+package uy.morso.users;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

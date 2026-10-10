@@ -1,12 +1,12 @@
-package uy.nutriplan;
+package uy.morso;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NutriplanApplication {
+public class MorsoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NutriplanApplication.class, args);
+        SpringApplication.run(MorsoApplication.class, args);
     }
 }

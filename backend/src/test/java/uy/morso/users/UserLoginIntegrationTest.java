@@ -1,4 +1,4 @@
-package uy.nutriplan.users;
+package uy.morso.users;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ class UserLoginIntegrationTest {
             mockMvc.perform(post("/api/v1/users")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content("""
-                            { "email": "login@nutriplan.uy", "password": "Segura1234!" }
+                            { "email": "login@morso.uy", "password": "Segura1234!" }
                             """));
         } catch (Exception ignored) {}
     }
@@ -44,7 +44,7 @@ class UserLoginIntegrationTest {
         mockMvc.perform(post("/api/v1/users/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
-                        { "email": "login@nutriplan.uy", "password": "Segura1234!" }
+                        { "email": "login@morso.uy", "password": "Segura1234!" }
                         """))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.token").isString());
@@ -55,7 +55,7 @@ class UserLoginIntegrationTest {
         mockMvc.perform(post("/api/v1/users/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
-                        { "email": "noexiste@nutriplan.uy", "password": "Segura1234!" }
+                        { "email": "noexiste@morso.uy", "password": "Segura1234!" }
                         """))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.error").exists());
@@ -66,7 +66,7 @@ class UserLoginIntegrationTest {
         mockMvc.perform(post("/api/v1/users/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
-                        { "email": "login@nutriplan.uy", "password": "Incorrecta99!" }
+                        { "email": "login@morso.uy", "password": "Incorrecta99!" }
                         """))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.error").exists());

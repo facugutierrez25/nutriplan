@@ -1,4 +1,4 @@
-package uy.nutriplan.users;
+package uy.morso.users;
 
 public class InvalidCredentialsException extends RuntimeException {
     public InvalidCredentialsException() {
