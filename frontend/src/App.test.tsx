@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest'
 import App from './App'
 
 describe('App', () => {
-  it('redirige a /register por defecto', () => {
+  it('redirige a /login cuando no hay sesión', () => {
     render(<App />)
-    expect(screen.getByRole('button', { name: 'Crear cuenta' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Iniciar sesión' })).toBeInTheDocument()
   })
 })

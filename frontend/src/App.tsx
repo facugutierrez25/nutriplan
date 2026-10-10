@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './auth/AuthContext'
+import PrivateRoute from './auth/PrivateRoute'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 
@@ -10,7 +11,8 @@ export default function App() {
         <Routes>
           <Route path="/register" element={<RegisterPage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
-          <Route path="*" element={<Navigate to="/register" replace/>}/>
+          {/* Rutas privadas van acá adentro de PrivateRoute */}
+          <Route path="*" element={<PrivateRoute><Navigate to="/login" replace/></PrivateRoute>}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
